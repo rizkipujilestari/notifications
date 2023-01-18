@@ -16,11 +16,22 @@ class SendMailController extends Controller
      */
     public function index()
     {
-        Mail::raw('Hi, welcome user!', function ($message) {
-            $message->to("rizkipuj@gmail.com")
-            ->from("admin@torche-indonesia.com")
-            ->subject("TEST SEND MAIL");
-          });
+        
+        $html = "<h1> Assalamu'alaikum </h1> <b>Kamu apa kabar?</b>";
+        Mail::html($html, function ($message) {
+            $message->to('someone-likeyou@gmail.com')
+            ->subject('TEST EMAIL')
+            ->from('rizkipuj@gmail.com');
+        });
+        
+        // $content = "Assalamu'alaikum Wr. Wb.";
+        // Mail::raw($content, function ($message) {
+        //     $message->to("rizkipuj@gmail.com")
+        //     ->from("admin@torche-indonesia.com")
+        //     ->subject("TEST SEND MAIL");
+        //   });
+
+        
         echo "Email Sent. Check your inbox.";
 
     }
