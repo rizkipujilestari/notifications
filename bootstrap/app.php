@@ -23,14 +23,9 @@ $app = new Laravel\Lumen\Application(
     dirname(__DIR__)
 );
 
-
-$app->withFacades(true, [
-    "Illuminate\Support\Facades\Notification" => "Notification",
-]);
-
-
 $app->withFacades();
-$app->withEloquent();
+
+// $app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -65,14 +60,7 @@ $app->singleton(
 */
 
 $app->configure('app');
-$app->configure("mail");
-
-$app->alias('mail.manager', Illuminate\Mail\MailManager::class);
-$app->alias('mail.manager', Illuminate\Contracts\Mail\Factory::class);
-
-$app->alias('mailer', Illuminate\Mail\Mailer::class);
-$app->alias('mailer', Illuminate\Contracts\Mail\Mailer::class);
-$app->alias('mailer', Illuminate\Contracts\Mail\MailQueue::class);
+$app->configure('mail');
 
 /*
 |--------------------------------------------------------------------------
@@ -104,12 +92,12 @@ $app->alias('mailer', Illuminate\Contracts\Mail\MailQueue::class);
 |
 */
 
-$app->register(Illuminate\Mail\MailServiceProvider::class);
-$app->register(Illuminate\Notifications\NotificationServiceProvider::class);
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
+$app->register(Illuminate\Mail\MailServiceProvider::class);
+
 $app->register(App\Providers\AppServiceProvider::class);
-$app->register(App\Providers\AuthServiceProvider::class);
-$app->register(App\Providers\EventServiceProvider::class);
+// $app->register(App\Providers\AuthServiceProvider::class);
+// $app->register(App\Providers\EventServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

@@ -13,9 +13,23 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton("mailer", function ($app) {
-            $app->configure("services");
-            return $app->loadComponent("mail", "Illuminate\Mail\MailServiceProvider", "mailer");
-        });
+        // $this->app->singleton(
+        //     Illuminate\Mail\MailServiceProvider::class,
+        // );
+        // // Aliases
+        // $this->app->alias('mailer', \Illuminate\Contracts\Mail\Mailer::class);
+        // // Make Queue
+        // $this->app->make('queue');
+
+        // $this->app->singleton(
+        //     'mailer',
+        //     function ($app) {
+        //         return $app->loadComponent('mail', 'Illuminate\Mail\MailServiceProvider', 'mailer');
+        //     }
+        // );
+        // // Aliases
+        // $this->app->alias('mailer', \Illuminate\Contracts\Mail\Mailer::class);
+        // // Make Queue
+        // $this->app->make('queue');
     }
 }

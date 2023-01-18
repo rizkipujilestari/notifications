@@ -9,28 +9,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Lumen\Auth\Authorizable;
 
-use Illuminate\Notifications\Notifiable;
-
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable, HasFactory;
-    use Notifiable;
-
- 
-    /**
-     * Route notifications for the mail channel.
-     *
-     * @param  \Illuminate\Notifications\Notification  $notification
-     * @return array|string
-     */
-    public function routeNotificationForMail($notification)
-    {
-        // Return email address only...
-        return $this->email_address;
- 
-        // Return email address and name...
-        return [$this->email_address => $this->name];
-    }
 
     /**
      * The attributes that are mass assignable.
@@ -49,5 +30,4 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
-
 }

@@ -8,11 +8,8 @@
         "php": "^8.0",
         "flipbox/lumen-generator": "^9.1",
         "guzzlehttp/guzzle": "^7.5",
-        "illuminate/mail": "^8.0",
-        "illuminate/notifications": "^8.0",
-        "illuminate/support": "^8.0",
-        "laravel/lumen-framework": "^8.0",
-        "symfony/mailer": "^6.0"
+        "illuminate/mail": "^9.48",
+        "laravel/lumen-framework": "^9.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
