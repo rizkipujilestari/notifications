@@ -46,7 +46,7 @@ class SendMailController extends Controller
             return "Berhasil kirim notif!";
 
         } catch (\Throwable $th) {
-            return $th->getMessage();
+            return response()->json(['message' => $th->getMessage()]);
         }
     }
     
@@ -72,7 +72,7 @@ class SendMailController extends Controller
             echo ('Notification sent!');
             
         } catch (\Throwable $th) {
-            return $th->getMessage();
+            return response()->json(['message' => $th->getMessage()]);
         }
     }
     
