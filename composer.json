@@ -9,7 +9,17 @@
         "flipbox/lumen-generator": "^9.1",
         "guzzlehttp/guzzle": "^7.5",
         "illuminate/mail": "^9.48",
-        "laravel/lumen-framework": "^9.0"
+        "illuminate/notifications": "^9.48",
+        "laravel-notification-channels/telegram": "^3.0",
+        "laravel/lumen-framework": "^9.0",
+        "illuminate/broadcasting": "^9.0",
+        "illuminate/bus": "^9.0",
+        "illuminate/collections": "^9.0",
+        "illuminate/container": "^9.0",
+        "illuminate/contracts": "^9.0",
+        "illuminate/filesystem": "^9.0",
+        "illuminate/queue": "^9.0",
+        "illuminate/support": "^9.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

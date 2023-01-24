@@ -6,6 +6,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use NotificationChannels\Telegram\TelegramMessage;
 
 class SendMail extends Mailable
 {
@@ -28,7 +29,14 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('TEST SEND EMAIL')
-                    ->view('email');
+        // return $this->subject('TEST SEND EMAIL')
+        //             ->view('vendor.mail');
+
+        $html = "<h1> Assalamu'alaikum </h1> <b>Kamu apa kabar?</b>";
+        return $this->html($html, function ($message) {
+            $message->to('someone-likeyou@gmail.com')
+            ->subject('TEST EMAIL')
+            ->from('rizkipuj@gmail.com');
+        });
     }
 }

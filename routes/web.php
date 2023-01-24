@@ -2,6 +2,12 @@
 
 /** @var \Laravel\Lumen\Routing\Router $router */
 
+use App\Mail\SendMail;
+use App\Models\Client;
+use App\Notifications\HelloUser;
+use App\Notifications\SendNotification;
+use App\Notifications\TelegramNotification;
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -18,3 +24,13 @@ $router->get('/', function () use ($router) {
 });
 
 $router->get('/sendmail', 'SendMailController@index');
+$router->get('/invoice', 'SendMailController@invoice');
+
+$router->get('/telegram-notif', 'SendMailController@telegramnotif');
+$router->get('/email-notif', 'SendMailController@emailnotif');
+
+
+$router->get('/mailable', function () { 
+    return new SendMail();
+});
+

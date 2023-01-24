@@ -25,7 +25,7 @@ $app = new Laravel\Lumen\Application(
 
 $app->withFacades();
 
-// $app->withEloquent();
+$app->withEloquent();
 
 /*
 |--------------------------------------------------------------------------
@@ -92,8 +92,23 @@ $app->configure('mail');
 |
 */
 
+// Make sure to create a "config/services.php" file and add the config from the above step.
+$app->configure('services');
+# Register the notification service providers.
+$app->register(Illuminate\Notifications\NotificationServiceProvider::class);
+$app->register(NotificationChannels\Telegram\TelegramServiceProvider::class);
+
+
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
 $app->register(Illuminate\Mail\MailServiceProvider::class);
+
+
+$app->alias('mail.manager', Illuminate\Mail\MailManager::class);
+$app->alias('mail.manager', Illuminate\Contracts\Mail\Factory::class);
+
+$app->alias('mailer', Illuminate\Mail\Mailer::class);
+$app->alias('mailer', Illuminate\Contracts\Mail\Mailer::class);
+$app->alias('mailer', Illuminate\Contracts\Mail\MailQueue::class);
 
 $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);

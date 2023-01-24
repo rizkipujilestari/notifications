@@ -117,6 +117,7 @@ return [
         'theme' => 'default',
         'paths' => [
             resource_path('views/vendor/mail'),
+            // resource_path('vendor/illuminate/notifications/resources/views/email'),
         ],
     ],
     /*
