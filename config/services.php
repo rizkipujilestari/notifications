@@ -21,6 +21,10 @@ return [
         'scheme' => 'https',
     ],
 
+    'smtp' => [
+        
+    ],
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],

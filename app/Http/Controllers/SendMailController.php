@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Mail\SendMail;
 use App\Models\Client;
 use App\Notifications\HelloUser;
+use App\Notifications\InvoicePaid;
 use App\Notifications\SendNotification;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Notification;
@@ -39,7 +40,7 @@ class SendMailController extends Controller
         echo "Email Sent. Check your inbox.";
     }
     
-    public function invoice()
+    public function emailnotif()
     {
         try {
             Notification::route('mail', 'rizkipuj@gmail.com')->notify(new SendNotification());
@@ -50,7 +51,7 @@ class SendMailController extends Controller
         }
     }
     
-    public function emailnotif()
+    public function databasenotif()
     {
         try {
             // $user = Client::first();
@@ -78,21 +79,28 @@ class SendMailController extends Controller
     
     public function telegramnotif()
     {
-        $user = Client::first();
-    
-        $project = [
-            'greeting' => 'Hi '.$user->name.',',
-            'body' => 'This is the project assigned to you.',
-            'thanks' => 'Thank you this is from codeanddeploy.com',
-            'actionText' => 'View Project',
-            'actionURL' => url('/'),
-            'id' => 57
-        ];
+        try {
+            $user = Client::first();
+            $user->notify(new SendNotification());
+            
+            echo "Telegram Sent. Check your inbox.";
+            
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()]);
+        }
+    }
 
-        Notification::route('telegram', '5430224572')
-        ->notify(new HelloUser($project));
-
-        echo "Telegram Sent. Check your inbox.";
+    public function telegramInvoice()
+    {
+        try {
+            $user = Client::first();
+            $user->notify(new InvoicePaid());
+            
+            echo "Telegram Sent. Check your inbox.";
+            
+        } catch (\Throwable $th) {
+            return response()->json(['message' => $th->getMessage()]);
+        }
     }
 
 }

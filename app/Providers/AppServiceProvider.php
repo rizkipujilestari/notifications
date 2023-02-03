@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Laravel\Lumen\Http\ResponseFactory;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,6 +14,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->app->singleton('Illuminate\Contracts\Routing\ResponseFactory', function ($app) {
+            return new ResponseFactory(
+                $app['Illuminate\Contracts\View\Factory'],
+                $app['Illuminate\Routing\Redirector']
+            );
+        });
+
         // $this->app->singleton(
         //     Illuminate\Mail\MailServiceProvider::class,
         // );

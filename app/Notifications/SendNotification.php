@@ -6,6 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
+use NotificationChannels\Telegram\Telegram;
+use NotificationChannels\Telegram\TelegramMessage;
 
 class SendNotification extends Notification
 {
@@ -29,7 +31,8 @@ class SendNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail', 'telegram'];
+        // return ['database'];
     }
 
     /**
@@ -47,6 +50,12 @@ class SendNotification extends Notification
             ->line('Your order status has been updated')
             ->action('Check it out', url('/'))
             ->line('Best regards!');
+    }
+
+    public function toTelegram($notifieable)
+    {
+        return (new TelegramMessage())
+            ->line("Assalamu'alaikum!! How are you?");
     }
 
     /**

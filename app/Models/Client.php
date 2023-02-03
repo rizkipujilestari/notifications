@@ -28,5 +28,10 @@ class Client extends Model
         // // Return email address and name...
         // return [$this->email => $this->name];
     }
+    
+    public function routeNotificationForTelegram($notification)
+    {
+        return $this->phone;
+    }
 
 }
